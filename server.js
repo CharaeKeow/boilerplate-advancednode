@@ -11,8 +11,14 @@ app.use('/public', express.static(process.cwd() + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Set pug as the template engine
+app.set('view engine', 'pug');
+
+// Point views to `./views/pug` dir
+app.set('views', './views/pug')
+
 app.route('/').get((req, res) => {
-	res.status(200).send({ success: true });
+	res.render("index");
 });
 
 const PORT = process.env.PORT || 3000;
