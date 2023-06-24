@@ -15,12 +15,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: { secure: false },
-  })
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: true,
+		saveUninitialized: true,
+		cookie: { secure: false },
+	})
 );
 
 app.use(passport.initialize());
@@ -33,20 +33,20 @@ app.set('view engine', 'pug');
 app.set('views', './views/pug');
 
 app.route('/').get((req, res) => {
-  res.render('index', { title: 'Hello', message: 'Please log in' });
+	res.render('index', { title: 'Hello', message: 'Please log in' });
 });
 
 passport.serializeUser((user, done) => {
-  done(null, user._id);
+	done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
-  // myDataBase.findOne({ _id: new ObjectID() }, (err, doc) => {
-  done(null, null);
-  // });
+	// myDataBase.findOne({ _id: new ObjectID() }, (err, doc) => {
+	done(null, null);
+	// });
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log('Listening on port ' + PORT);
+	console.log('Listening on port ' + PORT);
 });
